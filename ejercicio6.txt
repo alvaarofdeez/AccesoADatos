@@ -1,0 +1,4 @@
+Ciudad: Sevilla, Provincia: Sevilla, Número de Habitantes: 5464356, Temperatura: 546.8.
+Ciudad: Cordoba, Provincia: Cordoba, Número de Habitantes: 56456, Temperatura: 43.8.
+Ciudad: Madrid, Provincia: MAdrid, Número de Habitantes: 67567, Temperatura: 89.9.
+Ciudad: Barcelona, Provincia: Barcelona, Número de Habitantes: 43535, Temperatura: 67.9.

@@ -1,0 +1,25 @@
+<futbolistas>
+  <futbolista id="1">
+    <nombre>Karim Benzema</nombre>
+    <equipo>Real Madrid</equipo>
+    <goles>35</goles>
+  </futbolista>
+
+  <futbolista id="2">
+    <nombre>Vinicius Junior</nombre>
+    <equipo>Real Madrid</equipo>
+    <goles>25</goles>
+  </futbolista>
+
+  <futbolista id="3">
+    <nombre>Ansu Fati</nombre>
+    <equipo>FC Barcelona</equipo>
+    <goles>15</goles>
+  </futbolista>
+
+  <futbolista id="4">
+    <nombre>Iago Aspas</nombre>
+    <equipo>Celta de Vigo</equipo>
+    <goles>18</goles>
+  </futbolista>
+</futbolistas>
