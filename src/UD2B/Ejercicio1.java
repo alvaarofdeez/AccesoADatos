@@ -1,66 +1,66 @@
-package UD3;
+package UD2B;
 
 import java.io.File;
-import java.io.PrintStream;
 import java.io.FileNotFoundException;
-import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.PrintStream;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.NamedNodeMap;
 import org.xml.sax.SAXException;
 
-public class DOM_Parser {
+public class Ejercicio1 {
 
-    private static final String INDENT_NIVEL = "  ";  // Para indentación
+    private static final String INDENT_NIVEL = "  "; // PARA INDENTACIÓN
 
     public static void muestraNodo(Node nodo, int nivel, PrintStream ps) {
-        if (nodo.getNodeType() == Node.TEXT_NODE) { // Ignora textos vacíos
+        if (nodo.getNodeType() == Node.TEXT_NODE) { // IGNORA TEXTOS VACIOS
             String text = nodo.getNodeValue();
             if (text.trim().length() == 0) {
                 return;
             }
         }
-        for (int i = 0; i < nivel; i++) {    // Indentación
+        for (int i = 0; i < nivel; i++) { // IINDENTACIÓN
             ps.print(INDENT_NIVEL);
         }
-        switch (nodo.getNodeType()) {  // Escribe información de nodo según tipo
-            case Node.DOCUMENT_NODE:  // Documento
+        switch (nodo.getNodeType()) { // ESCRIBE INFORMACIÓN DE NODO SEGÚN TIPO
+            case Node.DOCUMENT_NODE: // DOCUMENTO
                 Document doc = (Document) nodo;
                 ps.println("Documento DOM, versión: " + doc.getXmlVersion()
                         + ", codificación: " + doc.getXmlEncoding());
                 break;
-            case Node.ELEMENT_NODE:    // Elemento
+            case Node.ELEMENT_NODE:    // ELEMENTO
                 ps.print("<" + nodo.getNodeName());
-                NamedNodeMap listaAtr = nodo.getAttributes();  // Lista atributos
+                NamedNodeMap listaAtr = nodo.getAttributes(); // LISTA ATRIBUTOS
                 for (int i = 0; i < listaAtr.getLength(); i++) {
                     Node atr = listaAtr.item(i);
                     ps.print(" @" + atr.getNodeName() + "[" + atr.getNodeValue() + "]");
                 }
                 ps.println(">");
                 break;
-            case Node.TEXT_NODE:    // Texto
+            case Node.TEXT_NODE: // TEXTO
                 ps.println(nodo.getNodeName() + "[" + nodo.getNodeValue() + "]");
                 break;
-            default:    // Otro tipo de nodo
+            default: // OTRO TIPO DE NODO
                 ps.println("(nodo de tipo: " + nodo.getNodeType() + ")");
         }
-        NodeList nodosHijos = nodo.getChildNodes();    // Muestra nodos hijos
+        NodeList nodosHijos = nodo.getChildNodes(); // MUESTRA NODOS HIJO
         for (int i = 0; i < nodosHijos.getLength(); i++) {
             muestraNodo(nodosHijos.item(i), nivel + 1, ps);
         }
     }
 
     public static void main(String[] args) {
-        String nomFich = "clientes.xml";
-        /* if (args.length < 1) {
+        String nomFich;
+        if (args.length < 1) {
             System.out.println("Indicar por favor nombre de fichero");
             return;
         } else {
             nomFich = args[0];
-        } */
+        }
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setIgnoringComments(true);
