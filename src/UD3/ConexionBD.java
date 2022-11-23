@@ -19,8 +19,7 @@ public class ConexionBD {
             conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "root", "root");
             sentencia = conect.createStatement();
         } catch (ClassNotFoundException | SQLException e) {
-
-            JOptionPane.showMessageDialog(null, "Error " + e);
+            e.printStackTrace();
         }
         return conect;
     }

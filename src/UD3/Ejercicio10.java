@@ -15,7 +15,7 @@ public class Ejercicio10 {
     public static void muestraLosMejores() {
         conect.conexion();
 
-        String[] apellidos = {"Alors", "Bretones", "Cañas", "Fulop", "Gavilán", "Jurado", "Millán", "Montero", "Ortega", "Ramírez", "Reina", "Roldán", "Trillo", "Serrano", "Fernández"};
+        String[] apellidos = {"Alors", "Bretones", "Cañas", "Fulop", "Gavilán", "Jurado", "Millán", "Montero", "Ortega", "Ramírez", "Reina", "Roldán", "Trillo", "Serrano", "Fernandez"};
 
         Statement st;
         ResultSet rs;

@@ -1,32 +1,38 @@
 package UD3;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-/**
- *
- * @author Alvaro
- */
-public class Ejercicio7 {
+public class Ejercicio8 {
 
     static ConexionBD conect = new ConexionBD();
 
     public static void muestraDatos() {
         conect.conexion();
 
+        int contador = 0;
         Statement st;
         ResultSet rs;
         String sql = "SELECT * FROM clientes";
 
         try {
-            st = conect.conect.createStatement();
+            st = conect.conect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = st.executeQuery(sql);
 
-            while (rs.next()) {
+            rs.afterLast();
+            while (rs.previous()) {
                 System.out.println("DNI: " + rs.getString("DNI") + "\nApellidos: " + rs.getString("APELLIDOS") + "\nCodigo Postal: " + rs.getInt("CP"));
                 System.out.println();
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
+        } finally{
+            try {
+                conect.conexion().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
