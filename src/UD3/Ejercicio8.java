@@ -11,7 +11,6 @@ public class Ejercicio8 {
     public static void muestraDatos() {
         conect.conexion();
 
-        int contador = 0;
         Statement st;
         ResultSet rs;
         String sql = "SELECT * FROM clientes";

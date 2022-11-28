@@ -27,20 +27,22 @@ public class Ejercicio12 {
             st = conect.conect.createStatement();
             rs = st.executeQuery(sql);
 
-            while (rs.next()) {
-                System.out.println("DNI: " + rs.getString("DNI") + "\nApellidos: " + rs.getString("APELLIDOS") + "\nCodigo Postal: " + rs.getInt("CP"));
-                System.out.println();
+            if (rs.next()) {
+                while (rs.next()) {
+                    System.out.println("DNI: " + rs.getString("DNI") + "\nApellidos: " + rs.getString("APELLIDOS") + "\nCodigo Postal: " + rs.getInt("CP"));
+                    System.out.println();
+                }
+
+                System.out.println("ACTUALIZANDO APELLIDOS...");
+
+                sql = "UPDATE clientes SET apellidos = ? WHERE (apellidos = ?)";
+                ps = conect.conect.prepareStatement(sql);
+                ps.setString(1, apellidoRenovado);
+                ps.setString(2, apellido);
+                ps.executeUpdate();
+
+                System.out.println("APELLIDOS MODIFICADOS");
             }
-
-            System.out.println("ACTUALIZANDO APELLIDOS...");
-
-            sql = "UPDATE clientes SET apellidos = ? WHERE (apellidos = ?)";
-            ps = conect.conect.prepareStatement(sql);
-            ps.setString(1, apellidoRenovado);
-            ps.setString(2, apellido);
-            ps.executeUpdate();
-
-            System.out.println("APELLIDOS MODIFICADOS");
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
