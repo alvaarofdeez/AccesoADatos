@@ -169,26 +169,16 @@ public class Seleccion {
             ps = conect.conect.prepareStatement(sql);
             ps.setString(1, nombreSeleccion);
             rs = ps.executeQuery();
-
-            int contador = 0;
-            boolean bandera = true;
-
-            while (rs.next()) {
-                contador++;
-                if (contador < 1) {
-                    bandera = true;
-                } else {
-                    bandera = false;
-                }
-            }
-
-            if (bandera == true) {
-                sql = "DELETE FROM seleccion WHERE (NOMBRE_SELECCION = ?)";
+            
+            if (rs == null){
+                sql = "DELETE FROM selecciones WHERE (NOMBRE_SELECCION = ?)";
                 ps = conect.conect.prepareStatement(sql);
                 ps.setString(1, nombreSeleccion);
                 ps.executeUpdate();
 
                 System.out.println("SELECCION ELIMINADA.");
+            } else {
+                System.out.println("ESTA SELECCION CONTIENE JUGADORES EN ACTIVO, NO SE PUEDE ELIMINAR.");
             }
         } catch (IOException | SQLException e) {
             System.err.println(e.getMessage());
