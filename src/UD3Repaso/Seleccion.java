@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Connection;
 
 public class Seleccion {
 
@@ -50,16 +49,16 @@ public class Seleccion {
             System.out.print("Introduce el nombre de la seleccion: ");
             nombreSeleccion = br.readLine();
 
-            String sql = "SELECT * FROM seleccion WHERE NOMBRE_SELECCION = ?";
+            String sql = "SELECT * FROM selecciones WHERE NOMBRE_SELECCION = ?";
             ps = conect.conect.prepareStatement(sql);
             ps.setString(1, nombreSeleccion);
             rs = ps.executeQuery();
 
-            if (rs == null) {
+            if (!rs.next()) {
                 System.out.print("Introduce el nombre del entrenador: ");
                 entrenador = br.readLine();
 
-                sql = "INSERT INTO seleccion (NOMBRE_SELECCION, ENTRENADOR) VALUES (?, ?)";
+                sql = "INSERT INTO selecciones (NOMBRE_SELECCION, ENTRENADOR) VALUES (?, ?)";
                 ps = conect.conect.prepareStatement(sql);
                 ps.setString(1, nombreSeleccion);
                 ps.setString(2, entrenador);
@@ -122,34 +121,45 @@ public class Seleccion {
             conect.conexion();
             String sql;
             PreparedStatement ps;
+            Statement st;
+            ResultSet rs;
 
             System.out.print("Introduce el nombre de la seleccion: ");
             String seleccion = br.readLine();
 
-            System.out.println("¿Quieres modificar el nombre de la seleccion? S/n");
-            if (br.readLine().equalsIgnoreCase("s")) {
-                System.out.print("Introduce el nuevo nombre de la seleccion: ");
-                nombreSeleccion = br.readLine();
+            sql = "SELECT * FROM selecciones WHERE NOMBRE_SELECCION = '" + seleccion + "'";
+            st = conect.conect.createStatement();
+            rs = st.executeQuery(sql);
 
-                sql = "UPDATE seleccion SET NOMBRE_SELECCION = ? WHERE (NOMBRE_SELECCION = ?)";
-                ps = conect.conect.prepareStatement(sql);
-                ps.setString(1, nombreSeleccion);
-                ps.setString(2, seleccion);
-                ps.executeUpdate();
-                System.out.println("SE HA MODIFICADO EL NOMBRE.");
-            }
-            System.out.println("¿Quieres modificar el entrenador de la seleccion? S/n");
-            if (br.readLine().equalsIgnoreCase("s")) {
-                System.out.print("Introduce el nuevo nombre del entrenador: ");
-                entrenador = br.readLine();
+            if (rs.next()) {
+                System.out.println("¿Quieres modificar el nombre de la seleccion? S/n");
+                if (br.readLine().equalsIgnoreCase("s")) {
+                    System.out.print("Introduce el nuevo nombre de la seleccion: ");
+                    nombreSeleccion = br.readLine();
 
-                sql = "UPDATE seleccion SET ENTRENADOR = ? WHERE (NOMBRE_SELECCION = ?)";
-                ps = conect.conect.prepareStatement(sql);
-                ps.setString(1, entrenador);
-                ps.setString(2, seleccion);
-                ps.executeUpdate();
-                System.out.println("SE HA MODIFICADO EL ENTRENADOR.");
+                    sql = "UPDATE selecciones SET NOMBRE_SELECCION = ? WHERE (NOMBRE_SELECCION = ?)";
+                    ps = conect.conect.prepareStatement(sql);
+                    ps.setString(1, nombreSeleccion);
+                    ps.setString(2, seleccion);
+                    ps.executeUpdate();
+                    System.out.println("SE HA MODIFICADO EL NOMBRE.");
+                }
+                System.out.println("¿Quieres modificar el entrenador de la seleccion? S/n");
+                if (br.readLine().equalsIgnoreCase("s")) {
+                    System.out.print("Introduce el nuevo nombre del entrenador: ");
+                    entrenador = br.readLine();
+
+                    sql = "UPDATE selecciones SET ENTRENADOR = ? WHERE (NOMBRE_SELECCION = ?)";
+                    ps = conect.conect.prepareStatement(sql);
+                    ps.setString(1, entrenador);
+                    ps.setString(2, seleccion);
+                    ps.executeUpdate();
+                    System.out.println("SE HA MODIFICADO EL ENTRENADOR.");
+                }
+            } else {
+                System.out.println("Esta seleccion no existe en la base de datos.");
             }
+
         } catch (IOException | SQLException e) {
             System.err.println(e.getMessage());
         }
@@ -169,8 +179,8 @@ public class Seleccion {
             ps = conect.conect.prepareStatement(sql);
             ps.setString(1, nombreSeleccion);
             rs = ps.executeQuery();
-            
-            if (rs == null){
+
+            if (!rs.next()) {
                 sql = "DELETE FROM selecciones WHERE (NOMBRE_SELECCION = ?)";
                 ps = conect.conect.prepareStatement(sql);
                 ps.setString(1, nombreSeleccion);

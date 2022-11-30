@@ -84,7 +84,7 @@ public class Jugador {
             ps.setString(2, apellidosJugador);
             rs = ps.executeQuery();
 
-            if (rs == null) {
+            if (!rs.next()) {
                 System.out.print("Introduce la altura del jugador (cm): ");
                 altura = Integer.parseInt(br.readLine());
 
@@ -164,7 +164,7 @@ public class Jugador {
             System.out.print("Introduce el ID del jugador: ");
             int id = Integer.parseInt(br.readLine());
 
-            sql = "SELECT * FROM futbolistas WHERE ID_JUGADOR = ?";
+            sql = "SELECT * FROM jugadores WHERE ID_JUGADOR = ?";
             ps = conect.conect.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
@@ -269,7 +269,7 @@ public class Jugador {
             System.out.print("Introduce el ID del jugador: ");
             int id = Integer.parseInt(br.readLine());
 
-            sql = "SELECT * FROM futbolistas WHERE ID_JUGADOR = ?";
+            sql = "SELECT * FROM jugadores WHERE ID_JUGADOR = ?";
             ps = conect.conect.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
