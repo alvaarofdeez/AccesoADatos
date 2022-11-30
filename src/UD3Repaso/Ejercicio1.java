@@ -1,8 +1,5 @@
 package UD3Repaso;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +14,33 @@ public class Ejercicio1 {
             String sql;
             Statement st;
             ResultSet rs;
-
+            
+            // CREACION TABLA JUGADORES
+            sql = "CREATE TABLE jugadores (ID_JUGADOR INT NOT NULL AUTO_INCREMENT, "
+                    + "NOMBRE_JUGADOR VARCHAR(45) NULL, "
+                    + "APELLIDOS_JUGADOR VARCHAR(45) NULL, "
+                    + "ALTURA INT NULL, "
+                    + "DEMARCACION ENUM('Portero', 'Defensa', 'Centrocampista', 'Delantero') NULL, "
+                    + "SELECCION VARCHAR(45) NULL, "
+                    + "PRIMARY KEY(ID_JUGADOR))";
+            st = conect.conect.createStatement();
+            st.execute(sql);
+            System.out.println("TABLA JUGADORES CREADA.");
+            
+            // CREACION TABLA SELECCIONES
+            sql = "CREATE TABLE selecciones (NOMBRE_SELECCION VARCHAR(45) NOT NULL, "
+                    + "ENTRENADOR VARCHAR(45) NULL, "
+                    + "PRIMARY KEY (NOMBRE_SELECCION))";
+            st = conect.conect.createStatement();
+            st.execute(sql);
+            System.out.println("TABLA SELECCIONES CREADA.");
+            
+            // CONFIGURACIÓN DE CLAVES FORANEAS
+            sql = "ALTER TABLE jugadores ADD CONSTRAINT FOREIGN KEY (SELECCION) REFERENCES selecciones (NOMBRE_SELECCION) ON DELETE CASCADE ON UPDATE CASCADE";
+            st = conect.conect.createStatement();
+            st.execute(sql);
+            System.out.println("CLAVES FORANEAS CONFIGURADAS.");
+            
             // SELECCIONES
             // ESPAÑA
             sql = "INSERT INTO selecciones (NOMBRE_SELECCION, ENTRENADOR) VALUES ('España', 'Luis Padrique')";
