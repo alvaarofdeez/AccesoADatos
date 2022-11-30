@@ -15,7 +15,7 @@ public class Ejercicio1 {
             Statement st;
             ResultSet rs;
             
-            // CREACION TABLA JUGADORES
+            /* // CREACION TABLA JUGADORES
             sql = "CREATE TABLE jugadores (ID_JUGADOR INT NOT NULL AUTO_INCREMENT, "
                     + "NOMBRE_JUGADOR VARCHAR(45) NULL, "
                     + "APELLIDOS_JUGADOR VARCHAR(45) NULL, "
@@ -46,7 +46,7 @@ public class Ejercicio1 {
             sql = "INSERT INTO selecciones (NOMBRE_SELECCION, ENTRENADOR) VALUES ('España', 'Luis Padrique')";
             st = conect.conect.createStatement();
             st.execute(sql);
-            System.out.println("LUIS PADRIQUE AÑADIDO.");
+            System.out.println("LUIS PADRIQUE AÑADIDO."); */
 
             sql = "INSERT INTO jugadores (NOMBRE_JUGADOR, APELLIDOS_JUGADOR, ALTURA, DEMARCACION, SELECCION) VALUES ('Unai', 'Simon', 190, 'Portero', 'España')";
             st = conect.conect.createStatement();
@@ -68,7 +68,7 @@ public class Ejercicio1 {
             st.execute(sql);
             System.out.println("LAPORTE AÑADIDO.");
             
-            sql = "INSERT INTO jugadores (NOMBRE_JUGADOR, APELLIDOS_JUGADOR, ALTURA, DEMARCACION, SELECCION) VALUES ('Jordi', 'Alba', 170, 'Defensa', 'España')";
+            /* sql = "INSERT INTO jugadores (NOMBRE_JUGADOR, APELLIDOS_JUGADOR, ALTURA, DEMARCACION, SELECCION) VALUES ('Jordi', 'Alba', 170, 'Defensa', 'España')";
             st = conect.conect.createStatement();
             st.execute(sql);
             System.out.println("JORDI ALBA AÑADIDO.");
@@ -101,9 +101,9 @@ public class Ejercicio1 {
             sql = "INSERT INTO jugadores (NOMBRE_JUGADOR, APELLIDOS_JUGADOR, ALTURA, DEMARCACION, SELECCION) VALUES ('Dani', 'Olmo', 179, 'Delantero', 'España')";
             st = conect.conect.createStatement();
             st.execute(sql);
-            System.out.println("DANI OLMO AÑADIDO.");
+            System.out.println("DANI OLMO AÑADIDO."); */
             
-            // ALEMANIA
+            /*// ALEMANIA
             sql = "INSERT INTO selecciones (NOMBRE_SELECCION, ENTRENADOR) VALUES ('Alemania', 'Hansi Flick')";
             st = conect.conect.createStatement();
             st.execute(sql);
@@ -528,7 +528,7 @@ public class Ejercicio1 {
             sql = "INSERT INTO jugadores (NOMBRE_JUGADOR, APELLIDOS_JUGADOR, ALTURA, DEMARCACION, SELECCION) VALUES ('Olivier', 'Giroud', 193, 'Delantero', 'Francia')";
             st = conect.conect.createStatement();
             st.execute(sql);
-            System.out.println("GIROUD AÑADIDO.");
+            System.out.println("GIROUD AÑADIDO.");*/
             
         } catch (SQLException e) {
             System.err.println(e.getMessage());

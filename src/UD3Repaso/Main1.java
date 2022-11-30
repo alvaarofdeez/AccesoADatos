@@ -4,13 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class Main1 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
-        Seleccion seleccion = new Seleccion();
-        Jugador jugador = new Jugador();
+        Seleccion1 seleccion = new Seleccion1();
+        Jugador1 jugador = new Jugador1();
 
         System.out.println("**********************************");
         System.out.println("************** MENU **************");
